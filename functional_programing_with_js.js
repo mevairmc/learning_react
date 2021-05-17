@@ -89,9 +89,36 @@ const selfEducate = person => ({
 * */
 
 /* Data transformation */
+/* Functional programming is alla bout transforming data from one form to another */
+/* We need a master in Array.map and Array.reduce */
 
+const schools = ["Yorktown", "Washington & Liberty", "Wakefield"]
+// school.join(", ") dont modify the array, this method generate a new array
+// school.filter( school => school[0] === "W")  generate a new array
 
+// Array.pop or Array.splice are not immutable
+// Object.Keys returns a new array
 
+// The last we need to use reduce
+const ages = [21, 18, 41, 40, 64, 63, 31 ]
+
+const maxAge = ages.reduce((max,age) =>{
+  console.log(`${age} > ${max} = ${age > max}`)
+  if(age > max) {
+    return age
+  } else {
+    return max
+  }
+}, 0)
+
+// Array.reduceRight start from the end
+// Array.IndexOf(searchElement) if not found  return -1
+
+// HIGHER ORDER FUNCTIONS
+/* Higher order functions are functions that can manipulate other functions */
+/* Currying is a functional technique that involves the use of higher-order functions*/
+
+const userLogs = userName => message => console.log()
 
 
 
@@ -100,4 +127,5 @@ const selfEducate = person => ({
 
 //  comes up a lot = surge mucho
 //  beef up = reforzar
+//  prepended = precedido
 
