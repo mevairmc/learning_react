@@ -72,6 +72,23 @@ console.log(addColor("Glam Green", list).length)
 console.log(list.length)
 
 // Pure Functions
+/* Treat his data like a immutable functions */
+
+const selfEducate = person => ({
+  ...person, // spread operator generate a new object and the second and the third line setup some values of main object
+  canRead:true,
+  canWrite: true
+})
+
+/*  3 rules to write functions */
+
+/*
+* 1. The function should take in at least one argument
+* 2. The function should return a value or another function
+* 3.The function should not change or mutate any of its arguments
+* */
+
+/* Data transformation */
 
 
 
