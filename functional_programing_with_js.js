@@ -118,7 +118,10 @@ const maxAge = ages.reduce((max,age) =>{
 /* Higher order functions are functions that can manipulate other functions */
 /* Currying is a functional technique that involves the use of higher-order functions*/
 
-const userLogs = userName => message => console.log()
+const userLogs = userName => message => console.log(`${userName} -> ${message}`)
+
+const log = userLogs('grandpa23');
+log("attempted to load 20 fake members")
 
 
 
