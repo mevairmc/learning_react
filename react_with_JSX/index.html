@@ -12,7 +12,7 @@
   <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="text/babel">
+  <script type="text/babel" data-type="module">
   // Some considerations
   /*
   * Nested components: you can add a lot of children components
@@ -61,25 +61,23 @@
   ];
 
   // Create a component Recipe
-  function Recipe(props){
+  function Recipe({ name, ingredients, steps }) {
       return(
               // We replace spaces in name with -(we use flag "g" to do it)
               <div id={name.toLowerCase().replace(/ /g,"-")}>
-                <h2>{props.name}</h2>
-                <ul>
-                  {props.ingredients.map((ingredient,i)=>(
+                <h2>{name}</h2>
+                <ul className="ingredients">
+                  {ingredients.map((ingredient,i)=>(
                           <li key={i}>
-                            {ingredient}
+                            {ingredient.name}
                           </li>
                   ))}
                 </ul>
                 <section className="instructions">
                   <h2>Cooking Instructions</h2>
                   <ol>
-                    {props.steps.map((step,i)=>(
-                            <li key={i}>
-                              {step}
-                            </li>
+                    {steps.map((step,i)=>(
+                            <li key={i}>{step}</li>
                     ))}
                   </ol>
                 </section>
@@ -88,22 +86,19 @@
   }
 
   // Create a component Menu
-  function Menu(props){
+  function Menu({ title, recipes }){
       return(
               <article>
                 <header>
-                  <h1>{props.title}</h1>
+                  <h1>{title}</h1>
                 </header>
                 <div className="recipes" >
-                  {props.recipes.map((recipe,i)=>( //we don't use curly braces
-                    <Recipe
-                      key={i}
-                      {...recipe}
-                      // name={recipe.name}
-                      // ingredients={recipe.ingredients}
-                      // steps={recipe.ingredients}
-                    />
-                    ))}
+                  {recipes.map((recipe,i)=>( //we don't use curly braces
+                          <Recipe key={i} {...recipe}/>
+                          // name={recipe.name}
+                          // ingredients={recipe.ingredients}
+                          // steps={recipe.ingredients}
+                  ))}
                 </div>
               </article>
       )
@@ -111,7 +106,7 @@
 
   // A call to ReactDOM.render
   ReactDOM.render(
-          // we passed props into component Menu
+          // we passed  into component Menu
           <Menu recipes={data} title="Delicious Recipes" />,
           document.getElementById("root")
   )
