@@ -62,7 +62,29 @@
 
   // Create a component Recipe
   function Recipe(props){
-
+      return(
+              // We replace spaces in name with -(we use flag "g" to do it)
+              <div id={name.toLowerCase().replace(/ /g,"-")}>
+                <h2>{props.name}</h2>
+                <ul>
+                  {props.ingredients.map((ingredient,i)=>(
+                          <li key={i}>
+                            {ingredient}
+                          </li>
+                  ))}
+                </ul>
+                <section className="instructions">
+                  <h2>Cooking Instructions</h2>
+                  <ol>
+                    {props.steps.map((step,i)=>(
+                            <li key={i}>
+                              {step}
+                            </li>
+                    ))}
+                  </ol>
+                </section>
+              </div>
+      )
   }
 
   // Create a component Menu
@@ -72,7 +94,17 @@
                 <header>
                   <h1>{props.title}</h1>
                 </header>
-                <div className="recipes" />
+                <div className="recipes" >
+                  {props.recipes.map((recipe,i)=>( //we don't use curly braces
+                    <Recipe
+                      key={i}
+                      {...recipe}
+                      // name={recipe.name}
+                      // ingredients={recipe.ingredients}
+                      // steps={recipe.ingredients}
+                    />
+                    ))}
+                </div>
               </article>
       )
   }
@@ -80,7 +112,7 @@
   // A call to ReactDOM.render
   ReactDOM.render(
           // we passed props into component Menu
-          <Menu recipe={data} title="Delicious Recipes" />,
+          <Menu recipes={data} title="Delicious Recipes" />,
           document.getElementById("root")
   )
 
