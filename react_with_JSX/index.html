@@ -22,6 +22,75 @@
   * Babel: if our code need to do support for all browser, so we need to add CDN babel into html
   * */
 
+  /*
+  * React fragment = use <React.Fragment> or use <> for short writing in DOM is invisible
+  * */
+
+  /*
+  * Intro to webpack
+  * Webpack is a module bundler, and this takes all of our different files(js,less,css,jsx,and so on)
+  * And turn them into a single file.
+  * The two main benefits of bundling are modularity and network performance
+  * Modularity will allow you to break down your source code into parts, that are easier to work with, specially in team environment
+  * Network performance is gained by only needling to load one dependency in the browser: the bundler.
+  * There a penalty for each HTTP request.
+  *
+  * Webpack can also can handle:
+  * Code splitting: Splits up your code into different chunks that can be loaded when you need them.
+  * Minification: Remove whitespace, line breaks, unnecessary code to reduce the file size.
+  * Feature Flagging: Sends code to on or more environments when testing out features.
+  * Hot Module Replacement(HRM): Changes only the updated modules immediately.
+  *
+  * **We use npm init -y for use all a default values.
+  * NEXT
+  * npm install --save-dev webpack
+  * npm install --save-dev webpack-cli
+  * npm install webpack webpack-cli
+  * npm install --save-dev webpack webpack-cli
+  * npm install babel-loader @babel/core --save-dev
+  *
+  * some config
+  * webpack.config.js
+  * module.exports = {
+      entry: "./src/index.js",
+      output: {
+        path: path.join(__dirname, "dist", "assets"),
+        filename: "bundle.js"
+      },
+      module: {
+        rules: [{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }]
+      }
+    };
+  * //.babelrc
+  * {
+      "presets": ["@babel/preset-env", "@babel/preset-react"]
+    }
+  *
+  * we run:
+  * npx webpack --mode development
+  * we created a dist
+  *
+  * now add in package.json scripts
+  * "build": "webpack --mode production"
+  *
+  * build html in dist assets
+  * <!DOCTYPE html>
+    <!--<html>-->
+    <!--  <head>-->
+    <!--    <meta charset="utf-8" />-->
+    <!--    <title>React Recipes App</title>-->
+    <!--  </head>-->
+    <!--  <body>-->
+        <div id="root"></div>-->
+        <script src="bundle.js">
+    *  <!--</body>-->
+    <!--</html>-->
+  *
+  *  devtool: "source-map" // Add this option for source mapping
+
+  * */
+
+
   /* CODE STARTS HERE*/
   const data = [
     {
