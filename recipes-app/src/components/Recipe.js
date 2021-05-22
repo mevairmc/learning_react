@@ -10,7 +10,10 @@ export default function Recipe({ name, ingredients, steps }) {
       <h2>{name}</h2>
       <IngredientsList list={ingredients}/>
       <Instructions title="Cooking Instructions" steps={steps} />
-      <StartRating />
+      <StartRating
+        style={{backgroundColor: "lightblue"}}
+        onDoubleClick={e => alert("double click")}
+      />
     </div>
   )
 }
