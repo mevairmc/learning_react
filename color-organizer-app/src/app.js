@@ -1,25 +1,25 @@
-import React, {useState} from "react";
+import React, {useState, createContext} from "react";
 import { render } from "react-dom";
 import ColorList from "./components/ColorList";
 import data from "./data/ColorList.json";
-import AddColorForm from "./AddColorForm";
-import { v4 } from "uuid";
+import AddColorForm from "./components/AddColorForm";
+import { v4 } from 'uuid';
+
+export const ColorContext = createContext();
 
 function App() {
-  const [colors, setColors] = useState(data)
+  return(
+    <>
+      <AddColorForm />
+      <ColorList />
+    </>
+  )
+ /* const [colors, setColors] = useState(data)
   return(
     <>
       <AddColorForm
         onNewColor={(title, color) => {
-          const newColors = [
-            ...colors,
-            {
-              id: v4(),
-              rating: 0,
-              title,
-              color
-            }
-          ];
+          const newColors = [...colors,{ id: v4(), rating: 0, title,color}];
           setColors(newColors);
         }}
       />
@@ -37,8 +37,13 @@ function App() {
         }}
       />
     </>
-  ) // proof destructuring
+  ) // proof destructuring*/
 }
 
 // Render App component
-render(<App />, document.getElementById("root"));
+render(
+  <ColorContext.Provider value={{ colors }}>
+    <App />
+  </ColorContext.Provider >,
+  document.getElementById("root")
+);
