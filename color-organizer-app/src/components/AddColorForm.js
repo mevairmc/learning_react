@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
+import { useInput } from "./hooks";
 // There are many ways to get information
 // For this component we'll learn to use useRef
 
 export default function AddColorForm(oneNewColor = f => f){
 /*  const txtTitle = useRef()
   const hexColor = useRef()*/
-  const [title, setTitle] = useState("");
-  const [color, setColor] = useState("#000000");
+  const [titleProps, resetTitle] = useInput("");
+  const [colorProps, resetColor] = useInput("#000000");
 
   const submit = e => {
     e.preventDefault()
@@ -15,8 +16,8 @@ export default function AddColorForm(oneNewColor = f => f){
     oneNewColor(title, color)
     // txtTitle.current.value = ""
     // hexColor.current.value = ""
-    setTitle("")
-    setColor("")
+    resetTitle()
+    resetColor()
   }
 
   return(
@@ -24,14 +25,14 @@ export default function AddColorForm(oneNewColor = f => f){
 {/*   <input ref={txtTitle} type="text" placeholder="color title..." required />
       <input ref={hexColor} type="color" required /> */}
       <input
-        value={title}
+        {...titleProps} // value: value initial and onChange: event ot set value
         onChange={event => setTitle(event.target.value)}
         type="text"
         placeholder="color title..."
         required
       />
       <input
-        value={color}
+        {...colorProps}
         onChange={event => setColor(event.target.value)}
         type="color"
         required
