@@ -1,18 +1,12 @@
 import React from 'react'
+import StarsRating from './StarsRating'
 
-
-export default function Color({color= "white", title = "new color" }) {
-  console.log(color)
-  return(
-    <>
-      <h3>{title}</h3>
-      <div
-        style={{
-          backgroundColor:`${color}`,
-          width: "100%",
-          height: "2rem"
-        }}
-      />
-    </>
-  )
+export default function Color({ title, color, rating }) {
+  return (
+    <section>
+      <h1>{title}</h1>
+      <div style={{ height: 50, backgroundColor: color }} />
+      <StarsRating selectedStars={rating} />
+    </section>
+  );
 }
