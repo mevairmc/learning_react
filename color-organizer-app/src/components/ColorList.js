@@ -1,9 +1,8 @@
 import React, { useContext } from 'react'
 import Color from './Color'
-import { ColorContext } from "./";
+import { useColors } from "./color-hooks";
 
-
-export default function ColorList({colors = [], onRemoveColor = f => f , onRateColor = g => g }){
+export default function ColorList(){
   /*if(!colors.length) return <div>No Colors Listed.</div>;
 
   return (
@@ -20,20 +19,14 @@ export default function ColorList({colors = [], onRemoveColor = f => f , onRateC
           }
         </div>
       );*/
+  const { colors } = useColors();
+
+  if (!colors.length) return <div>No Colors Listed. (Add a Color)</div>;
   return (
-    <ColorContext.Consumer>
-      {context => {
-        if (!context.colors.length)
-          return <div>No Colors Listed. (Add a Color)</div>;
-        return (
-          <div className="color-list">
-            {
-              context.colors.map(color =>
-                <Color key={color.id} {...color} />)
-            }
-          </div>
-        )
-      }}
-    </ColorContext.Consumer>
-  )
+    <div className="color-list">
+      {
+        colors.map(color => <Color key={color.id} {...color} />)
+      }
+    </div>
+  );
 }

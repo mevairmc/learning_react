@@ -1,11 +1,9 @@
-import React, {useState, createContext} from "react";
+import React from "react";
 import { render } from "react-dom";
-import ColorList from "./components/ColorList";
-import data from "./data/ColorList.json";
+import { ColorProvider } from "./components/color-hooks";
 import AddColorForm from "./components/AddColorForm";
-import { v4 } from 'uuid';
+import ColorList from "./components/ColorList";
 
-export const ColorContext = createContext();
 
 function App() {
   return(
@@ -42,8 +40,8 @@ function App() {
 
 // Render App component
 render(
-  <ColorContext.Provider value={{ colors }}>
+  <ColorProvider>
     <App />
-  </ColorContext.Provider >,
+  </ColorProvider>,
   document.getElementById("root")
 );
