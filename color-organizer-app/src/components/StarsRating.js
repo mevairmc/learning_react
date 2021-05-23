@@ -3,18 +3,18 @@ import Star from './Star'
 
 const createArray = length => [...Array(length)] // create a array with undefined elements.
 
-export default function StarRating({style={}, totalStar = 5 , rating = 3}){
-  const [selectedStars, setSelectedStars] = useState(rating)
+export default function StarRating({ rating, totalStar = 5 , selectedStars = 0, onRate = f => f}){
+
 
   // why can I not separate arrow function in other function
 
   return (
-    <div style={{padding: "5px", ...style }}  > {/*we upgrade react fragment to div to use styles*/}
+    <div style={{padding: "5px"}}  > {/*we upgrade react fragment to div to use styles*/}
       {createArray(totalStar).map((n,i)=>
         <Star
           key={i}
           selected={selectedStars > i }
-          onSelect={() =>setSelectedStars(i+1)}
+          onSelect={() => onRate(i + 1)} // onRate is not executed until I click in onSelect
         />
       )}
       <p>{selectedStars} of {totalStar} stars</p>
